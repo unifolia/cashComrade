@@ -1,0 +1,78 @@
+$titleFont: 'Yeseva One', cursive;
+$bodyFont: 'Lato', sans-serif;
+
+$textColor: #44374a;
+$background: #f4f4f3;
+
+html {
+    font-size: 125%;
+}
+
+body,
+input,
+button {
+    font-family: $bodyFont;
+    color: $textColor;
+}
+
+body {
+    height: 100vh;
+    background: $background;
+    padding: 50px 0;
+}
+
+main {
+    height: 100%;
+}
+
+progress {
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+}
+
+select {
+    display: inline;
+}
+
+p {
+    display: inline-block;
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width: 75%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.displayNone {
+    display: none;
+}
+
+progress[value] {
+    background-image:
+    -webkit-linear-gradient(-45deg, 
+                            transparent 33%, rgba(0, 0, 0, .1) 33%, 
+                            rgba(0,0, 0, .1) 66%, transparent 66%),
+    -webkit-linear-gradient(top, 
+                            rgba(255, 255, 255, .25), 
+                            rgba(0, 0, 0, .25)),
+    -webkit-linear-gradient(left, #09c, #f44);
+
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}

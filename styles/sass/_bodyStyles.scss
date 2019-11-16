@@ -1,0 +1,58 @@
+@import "globalStyles";
+@import "mixins";
+
+h1,
+h2 {
+    font-family: $titleFont;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.setUserGoal button {
+    width: 30%;
+}
+
+input {
+    display: inline-block;
+}
+
+input[type=text] {
+    width: 70%;
+}
+
+input[type=submit] {
+    width: 20%;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.decreaseIncrease {
+    display: flex;
+    justify-content: space-between;
+}
+
+.decreaseIncrease button {
+    border-radius: 100%;
+}
+
+.timeUntilGoal {
+    text-align: center;
+    @include centerItem;
+}
