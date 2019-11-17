@@ -18,7 +18,9 @@ moneyCounter.setGoal = function(){
             $('h2').empty();
         }
 
+
         $('.progressBar').html(`<progress value="0" max="${userInput}"></progress>`)
+
 
         moneyCounter.setCommitment(userInput);
     });
@@ -33,8 +35,6 @@ moneyCounter.setGoal = function(){
         moneyCounter.setCommitment(userInput);
 
         $('.setUserGoal input').val('')
-        console.log(moneyCounter.buttonClicks, 'sg sub');
-
     })
 }
 
@@ -48,10 +48,17 @@ moneyCounter.AddOrSubtract = function(userInput){
 
         let progressBarUpdate = myValueNumber * moneyCounter.buttonClicks;
         
-        console.log(myValueNumber);
-        console.log(moneyCounter.buttonClicks);
-        console.log(progressBarUpdate);
-        $(".progressBar").html(`<progress value="${progressBarUpdate}" max="${userInput}"></progress>`);    
+        // console.log(myValueNumber);
+        // console.log(moneyCounter.buttonClicks);
+        // console.log(progressBarUpdate);
+        $(".progressBar").html(`<progress value="${progressBarUpdate}" max="${userInput}"></progress>`); 
+
+        updateGoal = userInput - progressBarUpdate;
+        goalDifference = userInput - (userInput - progressBarUpdate)
+
+        console.log(updateGoal, goalDifference);
+        moneyCounter.setCommitment(updateGoal)
+
     })
 
     
@@ -105,7 +112,6 @@ moneyCounter.setCommitment = function(userInput){
 
 moneyCounter.init = function() {
     moneyCounter.setGoal();
-    // moneyCounter.AddOrSubtract();
     moneyCounter.setCommitment();
 }
 
