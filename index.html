@@ -21,16 +21,14 @@
             <form class="setUserGoal">
                 <label for="setGoal">Set Your Goal</label>
                 <input type="number" id="setGoal" min="1" placeholder="Set Your Goal">
-                <!-- Unhide label -->
-                <!-- <label for="submitGoal">Submit Goal</label> -->
+                <label for="submitGoal">Set Goal</label>
                 <button type="submit" id="submitGoal">Set</button>
-                <label for="resetGoal" class="displayNone">Reset Goal</label>
-                <button class="resetAll displayNone" id="resetGoal"></button>
             </form>
             <h2></h2>
             <div class="progressBar">
                 <progress value="0" max="1"></progress>
             </div>
+            <span class="untilGoal"></span>
             <form class="addOrSubtract">
                 <button class="subtract">-</button>
                 <label for="contribute"></label>
@@ -54,6 +52,7 @@
         </div>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="./script.js"></script>
 </body>
 </html>
