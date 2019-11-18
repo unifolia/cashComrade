@@ -1,78 +1,69 @@
 $titleFont: 'Yeseva One', cursive;
 $bodyFont: 'Lato', sans-serif;
 
-$textColor: #44374a;
-$background: #f4f4f3;
+$textColor: #00223d;
+$background: #fefefe;
 
 html {
     font-size: 125%;
-}
+};
 
 body,
 input,
 button {
     font-family: $bodyFont;
     color: $textColor;
-}
+};
 
 body {
     height: 100vh;
+    padding: 30px 0 20px 0;
     background: $background;
-    padding: 50px 0;
-}
+};
 
 main {
     height: 100%;
 }
 
-progress {
-    display: inline-block;
-    width: 100%;
-    margin: 0 auto;
-}
-
-select {
-    display: inline;
-}
-
-p {
-    display: inline-block;
-}
-
 h1,
 h2,
+h3,
+h4,
 p {
     margin: 0;
     padding: 0;
-}
+};
 
 .wrapper {
-    width: 75%;
+    width: 82.5%;
     max-width: 1200px;
     margin: 0 auto;
-}
+};
 
 .content {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-}
+    justify-content: space-between;
+};
 
 .displayNone {
     display: none;
-}
+};
 
-progress[value] {
-    background-image:
-    -webkit-linear-gradient(-45deg, 
-                            transparent 33%, rgba(0, 0, 0, .1) 33%, 
-                            rgba(0,0, 0, .1) 66%, transparent 66%),
-    -webkit-linear-gradient(top, 
-                            rgba(255, 255, 255, .25), 
-                            rgba(0, 0, 0, .25)),
-    -webkit-linear-gradient(left, #09c, #f44);
+.greyedOut{
+    cursor: default;
+    color: #bbb;
+    border: 2px solid #bbb;
+    box-shadow: 4px 4px #bbb;
+};
 
-    border-radius: 2px; 
-    background-size: 35px 20px, 100% 100%, 100% 100%;
-}
+label:not(:focus):not(:active) {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;  
+};

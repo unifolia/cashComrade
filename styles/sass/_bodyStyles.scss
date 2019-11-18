@@ -4,55 +4,217 @@
 h1,
 h2 {
     font-family: $titleFont;
+};
+
+h1,
+h2,
+h3 {
     text-align: center;
-}
+};
 
 h1 {
-    font-size: 3rem;
-}
+    padding: 10px 0;
+    font-size: 2.5rem;
+};
+
+h2 {
+    font-size: 1.5rem;
+    position: absolute;
+};
+
+h4 {
+    margin: auto 0;
+};
+
+p {
+    font-size: 1rem;
+};
 
 form {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-}
+    justify-content: space-between;
+};
 
-.setUserGoal button {
-    width: 30%;
-}
+.setUserGoal {
+    input{
+        width: 60%;
+    }
+    button{
+        width: 30%;
+    }
+};
+
+.userGoal {
+    position: relative;
+    height: 2.5rem;
+    display: flex;
+    @include centerFlexItem;
+};
+
+progress {
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px black;
+};
+
+progress[value] {
+    background-image:
+    -webkit-linear-gradient(-45deg, 
+                            transparent 33%, rgba(0, 0, 0, .1) 33%, 
+                            rgba(0,0, 0, .1) 66%, transparent 66%),
+    -webkit-linear-gradient(top, 
+                            rgba(255, 255, 255, .25), 
+                            rgba(0, 0, 0, .25)),
+    -webkit-linear-gradient(left, rgb(125, 125, 125), rgb(67, 67, 67));
+
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+    color: black;
+};
+
 
 input {
     display: inline-block;
-}
+    color: $textColor;
+    background: $background;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid $textColor;
+    box-shadow: 4px 4px black;
+};
 
-input[type=text] {
-    width: 70%;
-}
+::placeholder {
+    opacity: 1;
+    color: $textColor;
+};
 
-input[type=submit] {
-    width: 20%;
-}
+button {
+    border-radius: 5px;
+    background: $background;
+    padding: 0;
+    border: 2px solid $textColor;
+    box-shadow: 4px 4px black;
+    &:hover,
+    &:focus-within {
+        cursor: pointer;
+        position: relative;
+        top: 2px;
+        box-shadow: 4px 2px black;
+    }
+};
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
-}
+};
 
 input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
-}
+    -moz-appearance:textfield;
+};
 
-.decreaseIncrease {
+.untilGoal {
+    height: 1.5rem;
+};
+
+.addOrSubtract,
+.commitment {
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    .formControls,
+    .commitmentControls {
+        padding: 10px 0;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        input{
+            width: 50%;
+        }
+        select{
+            display: inline-block;
+            border: 2px solid $textColor;
+            border-radius: 5px;
+            box-shadow: 4px 4px $textColor;
+        }
+    }
+    button{
+        font-size: 40px;
+        height: 50px;
+        width: 25%;
+    }
+    @include centerFlexItem;
+};
+
+.commitmentBottom {
+    width: 20%;
     display: flex;
     justify-content: space-between;
 }
 
-.decreaseIncrease button {
-    border-radius: 100%;
+.timeUntilGoal {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 40px;
+    padding: 10px 0;
+    @include centerFlexItem;
 }
 
-.timeUntilGoal {
-    text-align: center;
-    @include centerItem;
+@media (max-width: 890px){
+    body {
+        padding: 10px 0;
+        height: 100%;
+    }
+
+    .userGoal {
+        height: 85px;
+        padding: 10px 0;
+    }
+
+    .untilGoal {
+        padding: 25px 0;
+        height: 95px;
+    }
+
+    .commitmentControls {
+        align-content: space-around;
+    }
+
+    .commitmentBottom {
+        padding: 25px 0 0 0;
+        width: 100%;
+        justify-content: space-around;
+        select {
+            padding: 10px;
+        }
+    }
+}
+
+@media (max-width: 550px){
+    p {
+        margin: 50px 0 50px 0;
+    }
+
+    .timeUntilGoal {
+        margin: 20px 0;
+    }
+}
+    
+@media (max-width: 480px){
+    .untilGoal {
+    padding: 25px 0;
+    height: 130px;
+    }
+}
+
+@media (max-width: 350px){
+    h1 {
+        font-size: 2rem;
+    }
 }

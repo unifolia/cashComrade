@@ -243,42 +243,30 @@ body,
 input,
 button {
   font-family: "Lato", sans-serif;
-  color: #44374a;
+  color: #00223d;
 }
 
 body {
   height: 100vh;
-  background: #f4f4f3;
-  padding: 50px 0;
+  padding: 30px 0 20px 0;
+  background: #fefefe;
 }
 
 main {
   height: 100%;
 }
 
-progress {
-  display: inline-block;
-  width: 100%;
-  margin: 0 auto;
-}
-
-select {
-  display: inline;
-}
-
-p {
-  display: inline-block;
-}
-
 h1,
 h2,
+h3,
+h4,
 p {
   margin: 0;
   padding: 0;
 }
 
 .wrapper {
-  width: 75%;
+  width: 82.5%;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -292,56 +280,158 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .displayNone {
   display: none;
 }
 
-progress[value] {
-  background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(left, #09c, #f44);
-  border-radius: 2px;
-  background-size: 35px 20px, 100% 100%, 100% 100%;
+.greyedOut {
+  cursor: default;
+  color: #bbb;
+  border: 2px solid #bbb;
+  -webkit-box-shadow: 4px 4px #bbb;
+          box-shadow: 4px 4px #bbb;
+}
+
+label:not(:focus):not(:active) {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }
 
 h1,
 h2 {
   font-family: "Yeseva One", cursive;
+}
+
+h1,
+h2,
+h3 {
   text-align: center;
 }
 
 h1 {
-  font-size: 3rem;
+  padding: 10px 0;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  position: absolute;
+}
+
+h4 {
+  margin: auto 0;
+}
+
+p {
+  font-size: 1rem;
 }
 
 form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+}
+
+.setUserGoal input {
+  width: 60%;
 }
 
 .setUserGoal button {
   width: 30%;
 }
 
+.userGoal {
+  position: relative;
+  height: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+progress {
+  display: inline-block;
+  width: 100%;
+  margin: 0 auto;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 5px black;
+          box-shadow: 5px 5px black;
+}
+
+progress[value] {
+  background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(left, #7d7d7d, #434343);
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+  color: black;
+}
+
 input {
   display: inline-block;
+  color: #00223d;
+  background: #fefefe;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #00223d;
+  -webkit-box-shadow: 4px 4px black;
+          box-shadow: 4px 4px black;
 }
 
-input[type=text] {
-  width: 70%;
+::-webkit-input-placeholder {
+  opacity: 1;
+  color: #00223d;
 }
 
-input[type=submit] {
-  width: 20%;
+:-ms-input-placeholder {
+  opacity: 1;
+  color: #00223d;
+}
+
+::-ms-input-placeholder {
+  opacity: 1;
+  color: #00223d;
+}
+
+::placeholder {
+  opacity: 1;
+  color: #00223d;
+}
+
+button {
+  border-radius: 5px;
+  background: #fefefe;
+  padding: 0;
+  border: 2px solid #00223d;
+  -webkit-box-shadow: 4px 4px black;
+          box-shadow: 4px 4px black;
+}
+
+button:hover, button:focus-within {
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  -webkit-box-shadow: 4px 2px black;
+          box-shadow: 4px 2px black;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -352,10 +442,73 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
-  /* Firefox */
 }
 
-.decreaseIncrease {
+.untilGoal {
+  height: 1.5rem;
+}
+
+.addOrSubtract,
+.commitment {
+  padding: 5px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.addOrSubtract .formControls,
+.addOrSubtract .commitmentControls,
+.commitment .formControls,
+.commitment .commitmentControls {
+  padding: 10px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.addOrSubtract .formControls input,
+.addOrSubtract .commitmentControls input,
+.commitment .formControls input,
+.commitment .commitmentControls input {
+  width: 50%;
+}
+
+.addOrSubtract .formControls select,
+.addOrSubtract .commitmentControls select,
+.commitment .formControls select,
+.commitment .commitmentControls select {
+  display: inline-block;
+  border: 2px solid #00223d;
+  border-radius: 5px;
+  -webkit-box-shadow: 4px 4px #00223d;
+          box-shadow: 4px 4px #00223d;
+}
+
+.addOrSubtract button,
+.commitment button {
+  font-size: 40px;
+  height: 50px;
+  width: 25%;
+}
+
+.commitmentBottom {
+  width: 20%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -364,11 +517,68 @@ input[type=number] {
           justify-content: space-between;
 }
 
-.decreaseIncrease button {
-  border-radius: 100%;
+.timeUntilGoal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  height: 40px;
+  padding: 10px 0;
+  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.timeUntilGoal {
-  text-align: center;
-  margin: 0 auto;
+@media (max-width: 890px) {
+  body {
+    padding: 10px 0;
+    height: 100%;
+  }
+  .userGoal {
+    height: 85px;
+    padding: 10px 0;
+  }
+  .untilGoal {
+    padding: 25px 0;
+    height: 95px;
+  }
+  .commitmentControls {
+    -ms-flex-line-pack: distribute;
+        align-content: space-around;
+  }
+  .commitmentBottom {
+    padding: 25px 0 0 0;
+    width: 100%;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .commitmentBottom select {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 550px) {
+  p {
+    margin: 50px 0 50px 0;
+  }
+  .timeUntilGoal {
+    margin: 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .untilGoal {
+    padding: 25px 0;
+    height: 130px;
+  }
+}
+
+@media (max-width: 350px) {
+  h1 {
+    font-size: 2rem;
+  }
 }

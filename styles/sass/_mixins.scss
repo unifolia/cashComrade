@@ -1,3 +1,4 @@
-@mixin centerItem {
-    margin: 0 auto;
+@mixin centerFlexItem {
+    justify-content: center;
+    align-items: center;
 }

@@ -24,9 +24,12 @@ moneyCounter.setGoal = function(){
         const userGoal = parseInt($(`${$userGoalForm} input`).val());
 
         if (userGoal > 0) {
-            $(`h2`).html(`$${userGoal}`);
+            $(`h2`).html(`Your goal is $${userGoal}`);
 
-            $(`${$userGoalForm} input`).addClass(`displayNone`);
+            $(`${$userGoalForm} input`)
+                .addClass(`greyedOut`)
+                .prop("disabled", true);
+
             $(`${$userGoalForm} button`)
                 .html(`Reset`)
                 .addClass(`reset`);
@@ -105,16 +108,16 @@ moneyCounter.AddOrSubtractClick = function(userGoal, distanceFromGoal){
 
 moneyCounter.setGoalMessage = function(userGoal, distanceFromGoal){
     if (distanceFromGoal <= userGoal){
-        $moneyFromGoal.html(`<h3>You are $${distanceFromGoal} away from reaching your goal! 😁</h3>`);
+        $moneyFromGoal.html(`<h3>You have $${userGoal - distanceFromGoal}. You are $${distanceFromGoal} away from reaching your goal! 😁</h3>`);
     } else {
         if (distanceFromGoal < userGoal * 1.5) {
-            $moneyFromGoal.html(`<h3>You are $${distanceFromGoal} away from reaching your goal! 😕</h3>`);
+            $moneyFromGoal.html(`<h3>You're in debt! You are $${distanceFromGoal} away from reaching your goal! 😕</h3>`);
         } else if (distanceFromGoal < userGoal * 5) {
-            $moneyFromGoal.html(`<h3>You are $${distanceFromGoal} away from reaching your goal! 😭</h3>`);
+            $moneyFromGoal.html(`<h3>You're in debt! You are $${distanceFromGoal} away from reaching your goal! 😭</h3>`);
         } else if (distanceFromGoal < userGoal * 10) {
-            $moneyFromGoal.html(`<h3>You are $${distanceFromGoal} away from reaching your goal! 🥵</h3>`);
+            $moneyFromGoal.html(`<h3>You're in debt! You are $${distanceFromGoal} away from reaching your goal! 🥵</h3>`);
         } else if (distanceFromGoal > userGoal * 10) {
-            $moneyFromGoal.html(`<h3>You are $${distanceFromGoal} away from reaching your goal! 💀</h3>`);
+            $moneyFromGoal.html(`<h3>Oh, my heavens! You are $${distanceFromGoal} away from reaching your goal! 💀</h3>`);
         };
     };
 };
