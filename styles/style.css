@@ -249,7 +249,10 @@ button {
 body {
   height: 100vh;
   padding: 30px 0 20px 0;
-  background: #fefefe;
+  background: linear-gradient(304deg, #f4e6b5, #efb9d6);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 59s ease infinite;
+  animation: AnimationName 59s ease infinite;
 }
 
 main {
@@ -389,7 +392,7 @@ progress[value] {
 input {
   display: inline-block;
   color: #00223d;
-  background: #fefefe;
+  background: #fefefeaa;
   padding: 10px;
   border-radius: 5px;
   border: 2px solid #00223d;
@@ -419,7 +422,7 @@ input {
 
 button {
   border-radius: 5px;
-  background: #fefefe;
+  background: #fefefeaa;
   padding: 0;
   border: 2px solid #00223d;
   -webkit-box-shadow: 4px 4px black;
@@ -486,7 +489,7 @@ input[type=number] {
 .addOrSubtract .commitmentControls input,
 .commitment .formControls input,
 .commitment .commitmentControls input {
-  width: 50%;
+  width: 40%;
 }
 
 .addOrSubtract .formControls select,
@@ -498,6 +501,7 @@ input[type=number] {
   border-radius: 5px;
   -webkit-box-shadow: 4px 4px #00223d;
           box-shadow: 4px 4px #00223d;
+  background: #fefefeaa;
 }
 
 .addOrSubtract button,

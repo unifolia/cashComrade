@@ -134,13 +134,14 @@ input[type=number] {
         flex-wrap: wrap;
         justify-content: space-between;
         input{
-            width: 50%;
+            width: 40%;
         }
         select{
             display: inline-block;
             border: 2px solid $textColor;
             border-radius: 5px;
             box-shadow: 4px 4px $textColor;
+            background: $background;
         }
     }
     button{

@@ -2,7 +2,7 @@ $titleFont: 'Yeseva One', cursive;
 $bodyFont: 'Lato', sans-serif;
 
 $textColor: #00223d;
-$background: #fefefe;
+$background: #fefefeaa;
 
 html {
     font-size: 125%;
@@ -18,7 +18,12 @@ button {
 body {
     height: 100vh;
     padding: 30px 0 20px 0;
-    background: $background;
+    background: linear-gradient(304deg, #f4e6b5, #efb9d6);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 59s ease infinite;
+    -moz-animation: AnimationName 59s ease infinite;
+    animation: AnimationName 59s ease infinite;
 };
 
 main {
