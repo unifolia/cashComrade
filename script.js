@@ -1,6 +1,6 @@
 moneyCounter = {};
 
-moneyCounter.buttonClicks = 0;
+let moneyAdded = 0;
 
 const $userGoalForm = `.setUserGoal`;
 const $progressBar = $(`.progressBar`);
@@ -13,9 +13,9 @@ moneyCounter.numbersOnly = function(){
     $(`input`).bind(`keypress`, function(event) {
         if (event.which < 48 || event.which > 57) {
             event.preventDefault();
-        }
+        };
     });
-}
+};
 
 moneyCounter.setGoal = function(){
     $(`form${$userGoalForm}`).on(`submit`, function(event){
@@ -31,18 +31,18 @@ moneyCounter.setGoal = function(){
                 .html(`Reset`)
                 .addClass(`reset`);
 
-            $(`.reset`).on(`click`, function () {
+            $(`.reset`).on(`click`, function(){
                 location.reload(true);
-            })
+            });
         } else {
             $(`h2`).empty();
             Swal.fire(`Please set a goal!`)
-        }
+        };
 
         moneyCounter.AddOrSubtract(userGoal);  
         moneyCounter.setCommitment(userGoal);
-    })
-}
+    });
+};
 
 
 moneyCounter.AddOrSubtract = function(userGoal){
@@ -51,53 +51,60 @@ moneyCounter.AddOrSubtract = function(userGoal){
     $(`button.add`).on(`click`, function(event){
         event.preventDefault();
 
-        moneyCounter.buttonClicks++;
+        let moneyToAdd = parseInt($($moneyToChangeInput).val()); 
 
-        let moneyToAdd = parseInt($($moneyToChangeInput).val());
-        let moneyAdded = moneyToAdd * moneyCounter.buttonClicks;    
+        if (isNaN(moneyToAdd)){
+            moneyToAdd = 0;
+        } 
+
+        moneyAdded = moneyAdded + moneyToAdd;
         let distanceFromGoal = userGoal - moneyAdded;
         
-        if (distanceFromGoal <= 0) {
+        if (distanceFromGoal <= 0){
             Swal.fire(`Your goal of $${userGoal} has been reached!`)
             .then(function(){
                 location.reload(true);
             })
         }
+
+        if (moneyToAdd === 0){
+            Swal.fire(`Please enter a number!`);
+        } else {
+            $progressBar.html(`<progress value="${moneyAdded}" max="${userGoal}"></progress>`); 
+            moneyCounter.AddOrSubtractClick(userGoal, distanceFromGoal);
+        }
         
-        moneyCounter.AddOrSubtractClick(moneyToAdd, moneyAdded, userGoal, distanceFromGoal);
     })
 
     
     $(`button.subtract`).on(`click`, function(event) {
         event.preventDefault();
 
-        moneyCounter.buttonClicks--;
-
         let moneyToSubtract = parseInt($($moneyToChangeInput).val());
-        let moneyAdded = moneyToSubtract * moneyCounter.buttonClicks;
+
+        if (isNaN(moneyToSubtract)){
+            moneyToSubtract = 0;
+        }
+
+        moneyAdded = moneyAdded - moneyToSubtract;
         let distanceFromGoal = userGoal - moneyAdded;
-        
-        moneyCounter.AddOrSubtractClick(moneyToSubtract, moneyAdded, userGoal, distanceFromGoal);
+
+        if (moneyToSubtract === 0){
+            Swal.fire(`Please enter a number!`);
+        } else {
+            $progressBar.html(`<progress value="${moneyAdded}" max="${userGoal}"></progress>`); 
+            moneyCounter.AddOrSubtractClick(userGoal, distanceFromGoal);
+        }
     });
 };
 
-moneyCounter.AddOrSubtractClick = function(moneyChanged, moneyAdded, userGoal, distanceFromGoal){
-    moneyCounter.warningMessage(moneyChanged, moneyAdded, userGoal);
+moneyCounter.AddOrSubtractClick = function(userGoal, distanceFromGoal){
     moneyCounter.setGoalMessage(userGoal, distanceFromGoal);
-    moneyCounter.setCommitment(distanceFromGoal)
-}
-
-moneyCounter.warningMessage = function(moneyChanged, moneyAdded, userGoal) {
-    if (isNaN(moneyChanged)) {
-        Swal.fire(`Please enter a number!`)
-        moneyCounter.buttonClicks = 0;
-    } else {
-        $progressBar.html(`<progress value="${moneyAdded}" max="${userGoal}"></progress>`);
-    }
+    moneyCounter.setCommitment(distanceFromGoal);
 }
 
 moneyCounter.setGoalMessage = function(userGoal, distanceFromGoal){
-    if (distanceFromGoal <= userGoal) {
+    if (distanceFromGoal <= userGoal){
         $moneyFromGoal.html(`<h3>You are $${distanceFromGoal} away from reaching your goal! 😁</h3>`);
     } else {
         if (distanceFromGoal < userGoal * 1.5) {
@@ -108,9 +115,9 @@ moneyCounter.setGoalMessage = function(userGoal, distanceFromGoal){
             $moneyFromGoal.html(`<h3>You are $${distanceFromGoal} away from reaching your goal! 🥵</h3>`);
         } else if (distanceFromGoal > userGoal * 10) {
             $moneyFromGoal.html(`<h3>You are $${distanceFromGoal} away from reaching your goal! 💀</h3>`);
-        }
-    }
-}
+        };
+    };
+};
 
 moneyCounter.setCommitment = function(distanceFromGoal){
     $commitmentForm
@@ -123,7 +130,7 @@ moneyCounter.setCommitment = function(distanceFromGoal){
     })
     .on(`submit`, function(event){
         event.preventDefault();
-    })
+    });
 
     moneyCounter.updateCompletionTime(distanceFromGoal);
 }
@@ -131,7 +138,7 @@ moneyCounter.setCommitment = function(distanceFromGoal){
 moneyCounter.updateCompletionTime = function(distanceFromGoal){
     let timeDivision = $(`select option:selected`).val();
     const commitmentValue = $(`input#setCommitment`).val();
-    const commitmentTime = (distanceFromGoal / commitmentValue)
+    const commitmentTime = (distanceFromGoal / commitmentValue);
 
     const commitmentTimeDays = `It will take ${(commitmentTime).toFixed(2)} days | ${(commitmentTime / 7).toFixed(2)} weeks | ${(commitmentTime / 7 / 4.345).toFixed(2)} months`
 
@@ -139,13 +146,13 @@ moneyCounter.updateCompletionTime = function(distanceFromGoal){
 
     const commitmentTimeMonths = `It will take ${(commitmentTime * 7 * 4.345).toFixed(2)} days | ${(commitmentTime * 4.345).toFixed(2)} weeks | ${commitmentTime.toFixed(2)} months`
 
-    if (commitmentValue > 0 && distanceFromGoal > 0) {
-        if (timeDivision === `day`) {
-            $timeUntilGoalStatement.html(commitmentTimeDays)
+    if (commitmentValue > 0 && distanceFromGoal > 0){
+        if (timeDivision === `day`){
+            $timeUntilGoalStatement.html(commitmentTimeDays);
         } else if (timeDivision === `week`) {
-            $timeUntilGoalStatement.html(commitmentTimeWeeks)
+            $timeUntilGoalStatement.html(commitmentTimeWeeks);
         } else {
-            $timeUntilGoalStatement.html(commitmentTimeMonths)
+            $timeUntilGoalStatement.html(commitmentTimeMonths);
         }
     } else {
         $timeUntilGoalStatement.empty();
@@ -153,7 +160,7 @@ moneyCounter.updateCompletionTime = function(distanceFromGoal){
 }
 
 
-moneyCounter.init = function() {
+moneyCounter.init = function(){
     moneyCounter.numbersOnly();
     moneyCounter.setGoal();
     moneyCounter.setCommitment();
