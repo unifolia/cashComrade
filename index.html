@@ -20,7 +20,7 @@
 
             <h1>Cash Companion</h1>
             <form class="setUserGoal">
-                <label for="setGoal">Set Your Goal</label>
+                <label for="setGoal">Set Your Savings Goal</label>
                 <input type="number" id="setGoal" min="1" placeholder="Set Your Goal">
                 <label for="submitGoal">Set Goal</label>
                 <button type="submit" id="submitGoal">Set</button>
@@ -36,10 +36,12 @@
             <form class="addOrSubtract">
                 <h3>Add or Subtract from Goal</h3>
                     <div class="formControls">
-                    <button class="subtract">-</button>
+                    <label for="subtract">subtract</label>
+                    <button class="subtract" id="subtract">-</button>
                     <label for="contribute"></label>
                     <input type="number" id="contribute" min="1" placeholder="Amount">  
-                    <button class="add">+</button>
+                    <label for="add">add</label>
+                    <button class="add" id="add">+</button>
                 </div>
             </form>
 
