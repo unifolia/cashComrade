@@ -251,8 +251,6 @@ body {
   padding: 30px 0 20px 0;
   background: linear-gradient(304deg, #f4e6b5, #efb9d6);
   background-size: 400% 400%;
-  -webkit-animation: AnimationName 59s ease infinite;
-  animation: AnimationName 59s ease infinite;
 }
 
 main {
