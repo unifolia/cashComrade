@@ -28,7 +28,7 @@ moneyCounter.setGoal = function(){
 
             $(`${$userGoalForm} input`)
                 .addClass(`greyedOut`)
-                .prop("disabled", true);
+                .prop(`disabled`, true);
 
             $(`${$userGoalForm} button`)
                 .html(`Reset`)
