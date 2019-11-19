@@ -54,27 +54,36 @@ form {
 
 progress {
     display: inline-block;
+    background: $background;
     width: 100%;
     margin: 0 auto;
-    border: none;
+    border: 2px solid $textColor;
     border-radius: 5px;
-    box-shadow: 5px 5px black;
+    box-shadow: 4px 4px $textColor;
 };
 
-progress[value] {
-    background-image:
-    -webkit-linear-gradient(-45deg, 
-                            transparent 33%, rgba(0, 0, 0, .1) 33%, 
-                            rgba(0,0, 0, .1) 66%, transparent 66%),
-    -webkit-linear-gradient(top, 
-                            rgba(255, 255, 255, .25), 
-                            rgba(0, 0, 0, .25)),
-    -webkit-linear-gradient(left, rgb(125, 125, 125), rgb(67, 67, 67));
-
+progress[value]::-moz-progress-bar { 
+  background-image:
+    -moz-linear-gradient(
+      135deg, 
+      transparent calc(100% / 1.5), 
+      rgba(0, 0, 0, 0.1) 33%, 
+      rgba(0, 0, 0, 0.1) 66%, 
+      transparent 33% 
+    ),
+    -moz-linear-gradient(
+      top, 
+      rgba(255, 255, 255, 0.25), 
+      rgba(0, 0, 0, 0.25)
+    ),
+    -moz-linear-gradient(
+      left, 
+      darken(#eb9aa2, 10), darken(#febea2, 10), darken(#d7e387, 10)
+      );
+      
     border-radius: 2px; 
-    background-size: 35px 20px, 100% 100%, 100% 100%;
-    color: black;
-};
+    background-size: 35px 20px, 100% 100%, 100% 100%; 
+}
 
 
 input {
@@ -84,7 +93,7 @@ input {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid $textColor;
-    box-shadow: 4px 4px black;
+    box-shadow: 4px 4px $textColor;
 };
 
 ::placeholder {
@@ -97,13 +106,13 @@ button {
     background: $background;
     padding: 0;
     border: 2px solid $textColor;
-    box-shadow: 4px 4px black;
+    box-shadow: 4px 4px $textColor;
     &:hover,
     &:focus-within {
         cursor: pointer;
         position: relative;
         top: 2px;
-        box-shadow: 4px 2px black;
+        box-shadow: 4px 2px $textColor;
     }
 };
 

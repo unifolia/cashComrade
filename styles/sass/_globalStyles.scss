@@ -1,8 +1,8 @@
-$titleFont: 'Yeseva One', cursive;
-$bodyFont: 'Lato', sans-serif;
+$titleFont: 'Rufina', serif;
+$bodyFont: 'Average Sans', sans-serif;
 
-$textColor: #00223d;
-$background: #fefefeaa;
+$textColor: #241604;
+$background: #fefefe88;
 
 html {
     font-size: 125%;
@@ -18,8 +18,12 @@ button {
 body {
     height: 100vh;
     padding: 30px 0 20px 0;
-    background: linear-gradient(304deg, #f4e6b5, #efb9d6);
-    background-size: 400% 400%;
+    background: linear-gradient(49deg, #eb9aa2, #febea2, #d7e387);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 15s ease infinite;
+    -moz-animation: AnimationName 15s ease infinite;
+    animation: AnimationName 15s ease infinite;
 };
 
 main {
@@ -68,3 +72,19 @@ label:not(:focus):not(:active) {
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;  
 };
+
+ @-webkit-keyframes AnimationName {
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+}
