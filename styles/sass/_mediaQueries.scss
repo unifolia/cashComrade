@@ -1,0 +1,3 @@
+@mixin showEmoji {
+    @media (min-width: 800px) { @content; }
+}

@@ -1,0 +1,71 @@
+
+$baseFontFamily: 'Fredoka One', cursive;
+$baseFontColor: #FEFEFE;
+
+@mixin baseFont {
+    font-family: $baseFontFamily;
+    color: $baseFontColor;
+}
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+html,
+a {
+    @include baseFont;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p {
+    @include reset-list;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    position: relative;
+}
+
+a {
+    font-size: 40px;
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.index h1:hover::after,
+.index h1:focus-within::after,
+a::after,
+a::after {
+    content: "";
+    display: inline-block;
+    width: 80%;
+    border-bottom: 4px solid #fad97899;
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.displayNone {
+    display: none;
+}
+
