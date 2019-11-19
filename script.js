@@ -1,4 +1,4 @@
-moneyCounter = {};
+moneyCounter = {}; 
 
 let moneyAdded = 0;
 
