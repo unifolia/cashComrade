@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="This is a money-saving app that helps the user keep track of finances. It was built by James Lewis">
 
     <link href="https://fonts.googleapis.com/css?family=Average+Sans|Rufina&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/largeFavicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicons/mediumFavicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicons/smallFavicon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/sass/style.css">
 
     <title>Cash Comrade</title>
 </head>
 <body>
     <main>
         <div class="content wrapper">
-
             <h1>Cash Comrade</h1>
             <form class="setUserGoal">
                 <label for="setGoal">Set Your Savings Goal</label>
@@ -33,9 +33,10 @@
             </div>
 
             <div class="untilGoal"></div>
+
             <form class="addOrSubtract">
                 <h3>Add or Subtract from Goal</h3>
-                    <div class="formControls">
+                <div class="formControls">
                     <label for="subtract">subtract</label>
                     <button class="subtract" id="subtract">-</button>
                     <label for="contribute"></label>
@@ -49,13 +50,16 @@
                 <h3>How long will it take?!</h3>
                 <div class="commitmentControls">
                     <h4>I want to save</h4>
-                    <label for="setGoal"></label>
+                    <label for="setCommitment"></label>
                     <input type="number" id="setCommitment" min="1" placeholder="Amount">
                     <div class="commitmentBottom">
                         <h4>per</h4>
                         <select name="period" class="dropdownStyle">
-                            <option value="day">day</option>
+                            <label for="day">per day</label>
+                            <option value="day" id="day">day</option>
+                            <label for="week" id="week">per week</label>
                             <option value="week">week</option>
+                            <label for="month" id="month">per month</label>
                             <option value="month">month</option>
                         </select>
                     </div>
