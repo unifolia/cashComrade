@@ -59,7 +59,7 @@ moneyCounter.setGoal = () => {
 
 moneyCounter.AddOrSubtract = () => {
     $(`.formControls button`).on(`click`, e => {
-        e.preventDefault();
+        e.preventDefault()
 
         if (goalSet == true) {
             let inputVal = parseInt($($moneyToChangeInput).val())
