@@ -17,6 +17,7 @@ button {
 
 body {
     height: 100vh;
+    min-height: 600px;
     padding: 30px 0 20px 0;
     background: linear-gradient(49deg, #eb9aa2, #febea2, #d7e387);
     background-size: 600% 600%;
@@ -42,6 +43,7 @@ p {
 .wrapper {
     width: 82.5%;
     max-width: 1200px;
+    min-width: 320px;
     margin: 0 auto;
 };
 
