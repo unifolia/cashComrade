@@ -1,6 +1,10 @@
 moneyCounter = {}
 
+let userGoal = 0
+let moneyToChange = 0
 let moneyAdded = 0
+let distanceFromGoal = 0
+let goalSet = false
 
 let $userGoalForm = `.setUserGoal`
 let $progressBar = $(`.progressBar`)
@@ -17,92 +21,75 @@ moneyCounter.numbersOnly = () => {
     })
 }
 
+moneyCounter.addReset = () => {
+    $(`${$userGoalForm} input`)
+        .addClass(`greyedOut`)
+        .prop(`disabled`, true)
+
+    $(`${$userGoalForm} button`)
+        .html(`Reset`)
+        .addClass(`reset`)
+
+    $(`.reset`).on(`click`, () => {
+        location.reload(true)
+    })
+}
+
 moneyCounter.setGoal = () => {
     $(`form${$userGoalForm}`).on(`submit`, e => {
         e.preventDefault()
 
-        const userGoal = parseInt($(`${$userGoalForm} input`).val())
+        userGoal = parseInt($(`${$userGoalForm} input`).val())
 
         if (userGoal > 0) {
             $(`h2`).html(`Your goal is $${userGoal}`)
 
-            $(`${$userGoalForm} input`)
-                .addClass(`greyedOut`)
-                .prop(`disabled`, true)
+            $progressBar.html(`<progress value="0" max="${userGoal}"></progress>`)
 
-            $(`${$userGoalForm} button`)
-                .html(`Reset`)
-                .addClass(`reset`)
-
-            $(`.reset`).on(`click`, () => {
-                location.reload(true)
-            })
+            moneyCounter.addReset()
         } else {
             $(`h2`).empty();
             Swal.fire(`Please set a goal!`)
         };
 
-        moneyCounter.AddOrSubtract(userGoal)
+        goalSet = true
         moneyCounter.setCommitment(userGoal)
     })
 }
 
-
-moneyCounter.AddOrSubtract = userGoal => {
-    $progressBar.html(`<progress value="0" max="${userGoal}"></progress>`)
-
-    $(`button.add`).on(`click`, e => {
+moneyCounter.AddOrSubtract = () => {
+    $(`.formControls button`).on(`click`, e => {
         e.preventDefault();
 
-        let moneyToAdd = parseInt($($moneyToChangeInput).val())
+        if (goalSet == true) {
+            let inputVal = parseInt($($moneyToChangeInput).val())
 
-        if (isNaN(moneyToAdd)) {
-            moneyToAdd = 0;
-        }
+            if (isNaN(inputVal) == false) {
+                if (e.currentTarget.id == "subtract") {
+                    moneyToChange = -Math.abs(inputVal)
+                } else {
+                    moneyToChange = inputVal
+                }
 
-        moneyAdded = moneyAdded + moneyToAdd
-        let distanceFromGoal = userGoal - moneyAdded
+                moneyAdded += moneyToChange
 
-        if (distanceFromGoal <= 0) {
-            Swal.fire(`Your goal of $${userGoal} has been reached!`)
-                .then(() => {
-                    location.reload(true)
-                })
-        }
+                distanceFromGoal = userGoal - moneyAdded
 
-        if (moneyToAdd === 0) {
-            Swal.fire(`Please enter a number!`)
+                moneyCounter.updateProgressBar(userGoal, moneyAdded, distanceFromGoal)
+                moneyCounter.checkGoal()
+                moneyCounter.setCommitment(distanceFromGoal)
+            } else {
+                Swal.fire(`Please enter a number!`)
+            }
         } else {
-            $progressBar.html(`<progress value="${moneyAdded}" max="${userGoal}"></progress>`)
-            moneyCounter.AddOrSubtractClick(userGoal, distanceFromGoal)
-        }
-    })
-
-
-    $(`button.subtract`).on(`click`, e => {
-        e.preventDefault();
-
-        let moneyToSubtract = parseInt($($moneyToChangeInput).val());
-
-        if (isNaN(moneyToSubtract)) {
-            moneyToSubtract = 0;
-        }
-
-        moneyAdded = moneyAdded - moneyToSubtract;
-        let distanceFromGoal = userGoal - moneyAdded;
-
-        if (moneyToSubtract === 0) {
-            Swal.fire(`Please enter a number!`)
-        } else {
-            $progressBar.html(`<progress value="${moneyAdded}" max="${userGoal}"></progress>`);
-            moneyCounter.AddOrSubtractClick(userGoal, distanceFromGoal)
+            Swal.fire(`Please set your goal first!`)
         }
     })
 }
 
-moneyCounter.AddOrSubtractClick = (userGoal, distanceFromGoal) => {
+moneyCounter.updateProgressBar = (userGoal, moneyAdded, distanceFromGoal) => {
+    $progressBar.html(`<progress value="${moneyAdded}" max="${userGoal}"></progress>`)
     moneyCounter.setGoalMessage(userGoal, distanceFromGoal)
-    moneyCounter.setCommitment(distanceFromGoal)
 }
 
 moneyCounter.setGoalMessage = (userGoal, distanceFromGoal) => {
@@ -118,6 +105,15 @@ moneyCounter.setGoalMessage = (userGoal, distanceFromGoal) => {
         } else if (distanceFromGoal > userGoal * 10) {
             $moneyFromGoal.html(`<h3>Oh, my heavens!!!! You are $${distanceFromGoal} away from reaching your goal! 💀</h3>`)
         }
+    }
+}
+
+moneyCounter.checkGoal = () => {
+    if (distanceFromGoal <= 0) {
+        Swal.fire(`Your goal of $${userGoal} has been reached!`)
+            .then(() => {
+                location.reload(true)
+            })
     }
 }
 
@@ -173,6 +169,7 @@ moneyCounter.updateCompletionTime = distanceFromGoal => {
 
 moneyCounter.init = () => {
     moneyCounter.numbersOnly()
+    moneyCounter.AddOrSubtract()
     moneyCounter.setGoal()
     moneyCounter.setCommitment()
 }
