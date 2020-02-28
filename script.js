@@ -21,7 +21,7 @@ moneyCounter.numbersOnly = () => {
     })
 }
 
-moneyCounter.addComma = number => {
+moneyCounter.formatNum = number => {
     return number.toLocaleString()
 }
 
@@ -46,7 +46,7 @@ moneyCounter.setGoal = () => {
         userGoal = parseInt($(`${$userGoalForm} input`).val())
 
         if (userGoal > 0) {
-            $(`h2`).html(`Your goal is $${moneyCounter.addComma(userGoal)}`)
+            $(`h2`).html(`Your goal is $${moneyCounter.formatNum(userGoal)}`)
 
             $progressBar.html(`<progress value="0" max="${userGoal}"></progress>`)
 
@@ -98,8 +98,8 @@ moneyCounter.updateProgressBar = (userGoal, moneyAdded, distanceFromGoal) => {
 }
 
 moneyCounter.setGoalMessage = (userGoal, distanceFromGoal) => {
-    let currentMoney = moneyCounter.addComma(userGoal - distanceFromGoal)
-    let distanceWithComma = moneyCounter.addComma(distanceFromGoal)
+    let currentMoney = moneyCounter.formatNum(userGoal - distanceFromGoal)
+    let distanceWithComma = moneyCounter.formatNum(distanceFromGoal)
 
     if (distanceFromGoal <= userGoal) {
         $moneyFromGoal.html(`<h3>You have $${currentMoney}. You are $${distanceWithComma} away from reaching your goal! 😁</h3>`)
@@ -118,7 +118,7 @@ moneyCounter.setGoalMessage = (userGoal, distanceFromGoal) => {
 
 moneyCounter.checkGoal = () => {
     if (distanceFromGoal <= 0) {
-        Swal.fire(`Your goal of $${moneyCounter.addComma(userGoal)} has been reached!`)
+        Swal.fire(`Your goal of $${moneyCounter.formatNum(userGoal)} has been reached!`)
             .then(() => {
                 location.reload(true)
             })
@@ -147,19 +147,19 @@ moneyCounter.updateCompletionTime = distanceFromGoal => {
     let commitmentTime = (distanceFromGoal / commitmentValue)
 
     let commitmentTimeDays = `It will take 
-    ${(commitmentTime).toFixed(2)} days | 
-    ${(commitmentTime / 7).toFixed(2)} weeks | 
-    ${(commitmentTime / 7 / 4.345).toFixed(2)} months`
+    ${moneyCounter.formatNum(commitmentTime)} days | 
+    ${moneyCounter.formatNum((commitmentTime / 7))} weeks | 
+    ${moneyCounter.formatNum((commitmentTime / 7 / 4.345))} months`
 
     let commitmentTimeWeeks = `It will take 
-    ${(commitmentTime * 7).toFixed(2)} days | 
-    ${commitmentTime.toFixed(2)} weeks | 
-    ${(commitmentTime / 4.345).toFixed(2)} months`
+    ${moneyCounter.formatNum(commitmentTime * 7)} days | 
+    ${moneyCounter.formatNum(commitmentTime)} weeks | 
+    ${moneyCounter.formatNum(commitmentTime / 4.345)} months`
 
     let commitmentTimeMonths = `It will take 
-    ${(commitmentTime * 7 * 4.345).toFixed(2)} days | 
-    ${(commitmentTime * 4.345).toFixed(2)} weeks | 
-    ${commitmentTime.toFixed(2)} months`
+    ${moneyCounter.formatNum(commitmentTime * 7 * 4.345)} days | 
+    ${moneyCounter.formatNum(commitmentTime * 4.345)} weeks | 
+    ${moneyCounter.formatNum(commitmentTime)} months`
 
     if (commitmentValue > 0 && distanceFromGoal > 0) {
         if (timeDivision === `day`) {
