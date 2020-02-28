@@ -146,28 +146,31 @@ moneyCounter.updateCompletionTime = distanceFromGoal => {
     let commitmentValue = $(`input#setCommitment`).val()
     let commitmentTime = (distanceFromGoal / commitmentValue)
 
-    let commitmentTimeDays = `It will take 
-    ${moneyCounter.formatNum(commitmentTime)} days | 
-    ${moneyCounter.formatNum((commitmentTime / 7))} weeks | 
-    ${moneyCounter.formatNum((commitmentTime / 7 / 4.345))} months`
-
-    let commitmentTimeWeeks = `It will take 
-    ${moneyCounter.formatNum(commitmentTime * 7)} days | 
-    ${moneyCounter.formatNum(commitmentTime)} weeks | 
-    ${moneyCounter.formatNum(commitmentTime / 4.345)} months`
-
-    let commitmentTimeMonths = `It will take 
-    ${moneyCounter.formatNum(commitmentTime * 7 * 4.345)} days | 
-    ${moneyCounter.formatNum(commitmentTime * 4.345)} weeks | 
-    ${moneyCounter.formatNum(commitmentTime)} months`
+    let commitmentMessage = (days, weeks, months) => {
+        $timeUntilGoalStatement.html(
+            `It will take ${days} days | ${weeks} weeks | ${months} months`
+        )
+    } 
 
     if (commitmentValue > 0 && distanceFromGoal > 0) {
         if (timeDivision === `day`) {
-            $timeUntilGoalStatement.html(commitmentTimeDays)
+            commitmentMessage(
+                moneyCounter.formatNum(commitmentTime), 
+                moneyCounter.formatNum((commitmentTime / 7)), 
+                moneyCounter.formatNum((commitmentTime / 7 / 4.345))
+            )
         } else if (timeDivision === `week`) {
-            $timeUntilGoalStatement.html(commitmentTimeWeeks)
+            commitmentMessage(
+                moneyCounter.formatNum(commitmentTime * 7),
+                moneyCounter.formatNum(commitmentTime),
+                moneyCounter.formatNum(commitmentTime / 4.345)
+            )
         } else {
-            $timeUntilGoalStatement.html(commitmentTimeMonths)
+            commitmentMessage(
+                moneyCounter.formatNum(commitmentTime * 7 * 4.345),
+                moneyCounter.formatNum(commitmentTime * 4.345),
+                moneyCounter.formatNum(commitmentTime)
+            )
         }
     } else {
         $timeUntilGoalStatement.empty()
