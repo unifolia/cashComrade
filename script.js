@@ -21,6 +21,10 @@ moneyCounter.numbersOnly = () => {
     })
 }
 
+moneyCounter.addComma = number => {
+    return number.toLocaleString()
+}
+
 moneyCounter.addReset = () => {
     $(`${$userGoalForm} input`)
         .addClass(`greyedOut`)
@@ -42,7 +46,7 @@ moneyCounter.setGoal = () => {
         userGoal = parseInt($(`${$userGoalForm} input`).val())
 
         if (userGoal > 0) {
-            $(`h2`).html(`Your goal is $${userGoal}`)
+            $(`h2`).html(`Your goal is $${moneyCounter.addComma(userGoal)}`)
 
             $progressBar.html(`<progress value="0" max="${userGoal}"></progress>`)
 
@@ -89,28 +93,32 @@ moneyCounter.AddOrSubtract = () => {
 
 moneyCounter.updateProgressBar = (userGoal, moneyAdded, distanceFromGoal) => {
     $progressBar.html(`<progress value="${moneyAdded}" max="${userGoal}"></progress>`)
+
     moneyCounter.setGoalMessage(userGoal, distanceFromGoal)
 }
 
 moneyCounter.setGoalMessage = (userGoal, distanceFromGoal) => {
+    let currentMoney = moneyCounter.addComma(userGoal - distanceFromGoal)
+    let distanceWithComma = moneyCounter.addComma(distanceFromGoal)
+
     if (distanceFromGoal <= userGoal) {
-        $moneyFromGoal.html(`<h3>You have $${userGoal - distanceFromGoal}. You are $${distanceFromGoal} away from reaching your goal! 😁</h3>`)
+        $moneyFromGoal.html(`<h3>You have $${currentMoney}. You are $${distanceWithComma} away from reaching your goal! 😁</h3>`)
     } else {
         if (distanceFromGoal < userGoal * 1.5) {
-            $moneyFromGoal.html(`<h3>You're in debt! You are $${distanceFromGoal} away from reaching your goal! 😕</h3>`)
+            $moneyFromGoal.html(`<h3>You're in debt! You are $${distanceWithComma} away from reaching your goal! 😕</h3>`)
         } else if (distanceFromGoal < userGoal * 5) {
-            $moneyFromGoal.html(`<h3>You're in debt!! You are $${distanceFromGoal} away from reaching your goal! 😭</h3>`)
+            $moneyFromGoal.html(`<h3>You're in debt!! You are $${distanceWithComma} away from reaching your goal! 😭</h3>`)
         } else if (distanceFromGoal < userGoal * 10) {
-            $moneyFromGoal.html(`<h3>You're in debt!!! You are $${distanceFromGoal} away from reaching your goal! 🥵</h3>`)
+            $moneyFromGoal.html(`<h3>You're in debt!!! You are $${distanceWithComma} away from reaching your goal! 🥵</h3>`)
         } else if (distanceFromGoal > userGoal * 10) {
-            $moneyFromGoal.html(`<h3>Oh, my heavens!!!! You are $${distanceFromGoal} away from reaching your goal! 💀</h3>`)
+            $moneyFromGoal.html(`<h3>Oh, my heavens!!!! You are $${distanceWithComma} away from reaching your goal! 💀</h3>`)
         }
     }
 }
 
 moneyCounter.checkGoal = () => {
     if (distanceFromGoal <= 0) {
-        Swal.fire(`Your goal of $${userGoal} has been reached!`)
+        Swal.fire(`Your goal of $${moneyCounter.addComma(userGoal)} has been reached!`)
             .then(() => {
                 location.reload(true)
             })
